@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npx tsc",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "test": "jest", 
+    "test": "jest",
     "start": "npx pm2 start pm2.yaml"
   },
   "repository": {
