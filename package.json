@@ -10,13 +10,9 @@
     "postinstall": "npx tsc",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
     "test": "jest",
-<<<<<<< HEAD
     "gcp-build":"tsc -p .",
     "deploy": "gcloud app deploy",
     "start": "node ./dist/server.js"
-=======
-    "start": "npx pm2 start pm2.yaml"
->>>>>>> 31ac842aa416f14612823334ffb336e09f0cfcb7
   },
   "repository": {
     "type": "git",
