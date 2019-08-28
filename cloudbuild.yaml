@@ -7,6 +7,6 @@ steps:
   - --plaintext-file=config.json
   - --location=global
   - --keyring=[visioedu]
-  - --key=[psw-visioedu20198]
+  - --key=[psw-visioedu2019]
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['app', 'deploy', '--project=visioedu', '--version=$SHORT_SHA']
