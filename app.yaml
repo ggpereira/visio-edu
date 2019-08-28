@@ -1,1 +1,3 @@
 runtime: nodejs10
+beta_settings:
+  cloud_sql_instances: visioedu:southamerica-east1:visioedu-db

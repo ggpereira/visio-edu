@@ -6,3 +6,4 @@ build
 **/.vscode
 dist
 ./node_modules
+config.json
