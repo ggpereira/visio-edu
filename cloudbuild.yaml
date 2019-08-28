@@ -1,3 +1,3 @@
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['kms','decrypt','--ciphertext-file=config.json.enc', '--plaintext-file=config.json', '--location=global','--keyring=[visioedu]','--key=[psw-visioedu2019]', 'app', 'deploy', '--project=visioedu', '--version=$SHORT_SHA'],
+  args: ['kms','decrypt','--ciphertext-file=config.json.enc', '--plaintext-file=config.json', '--location=global','--keyring=[visioedu]','--key=[psw-visioedu2019]', 'app', 'deploy', '--project=visioedu', '--version=$SHORT_SHA']
