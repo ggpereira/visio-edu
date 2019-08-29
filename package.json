@@ -7,11 +7,11 @@
     "pretest": "npm run gcp-build",
     "lint": "tslint -p .",
     "postinstall": "npx tsc",
-    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
+    "dev": "tsc-watch --onSuccess \"node ./dist/src/server.js\"",
     "test": "jest",
     "gcp-build": "tsc -p .",
     "deploy": "gcloud app deploy",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/src/server.js"
   },
   "repository": {
     "type": "git",
