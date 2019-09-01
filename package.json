@@ -8,11 +8,11 @@
     "pretest": "npm run gcp-build",
     "lint": "tslint -p .",
     "postinstall": "npx tsc",
-    "dev": "nodemon src/index.ts --exec ts-node",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.ts --exec ts-node",
     "test": "jest",
     "gcp-build": "tsc -p .",
     "deploy": "gcloud app deploy",
-    "start": "NODE_ENV=production node ./dist/src/index.js"
+    "start": "cross-env NODE_ENV=production node ./dist/src/index.js"
   },
   "repository": {
     "type": "git",
@@ -50,11 +50,12 @@
     "@types/jest": "^24.0.18",
     "@types/morgan": "^1.7.37",
     "@types/mysql2": "github:types/mysql2",
+    "cross-env": "^5.2.1",
     "jest": "^24.9.0",
+    "mysql": "^2.17.1",
     "nodemon": "^1.19.1",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
-    "tslint": "^5.11.0",
-    "mysql": "^2.17.1"
+    "tslint": "^5.11.0"
   }
 }
