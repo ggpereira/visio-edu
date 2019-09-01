@@ -17,11 +17,11 @@ export async function connect():Promise<Connection> {
     } else {
         return await createConnection({
             type:"mysql", 
-            host:"localhost", 
-            port: 3306,
-            username:"root", 
-            password: "@1g2o3m4e5s", 
-            database: "visioedu"
+            host:"", 
+            port:"",
+            username:"", 
+            password:"", 
+            database:"" 
         });
     }
 }
