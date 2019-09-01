@@ -18,7 +18,7 @@ export async function connect():Promise<Connection> {
         return await createConnection({
             type:"mysql", 
             host:"", 
-            port:"",
+            port:0,
             username:"", 
             password:"", 
             database:"" 
