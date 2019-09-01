@@ -12,7 +12,7 @@
     "test": "jest",
     "gcp-build": "tsc -p .",
     "deploy": "gcloud app deploy",
-    "start": "node ./dist/src/index.js"
+    "start": "NODE_ENV=production node ./dist/src/index.js"
   },
   "repository": {
     "type": "git",
