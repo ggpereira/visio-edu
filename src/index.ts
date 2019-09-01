@@ -9,4 +9,6 @@ async function main() {
 
 connect().then(async connection => {
     main();
+}).catch((err) => {
+    console.log(err);
 })
