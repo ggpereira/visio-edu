@@ -5,7 +5,7 @@ export async function connect(): Promise<Connection> {
     let config: ConnectionOptions;
     
     if(process.env.NODE_ENV !== "production") {
-        const configdev = await import('../../config.dev.json');
+        const configdev = await import('../../config.example.json');
         config = {
             type: "mysql", 
             host: configdev.MYSQL_HOST, 
