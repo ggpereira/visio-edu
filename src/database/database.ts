@@ -1,51 +1,33 @@
-import config from '../../config.json';
-import { createConnection, Connection } from "typeorm";
+import { createConnection, Connection, ConnectionOptions } from "typeorm";
 
 
-export async function connect():Promise<Connection> {
-    if(process.env.NODE_EV === 'production') {
-        return await createConnection({
+export async function connect(): Promise<Connection> {
+    let config: ConnectionOptions;
+    
+    if(process.env.NODE_ENV !== "production") {
+        const configdev = await import('../../config.dev.json');
+        config = {
             type: "mysql", 
-            extra:{
-                socketPath: `/cloudsql/${config.INSTANCE_CONNECTION_NAME}`
+            host: configdev.MYSQL_HOST, 
+            port: configdev.MYSQL_PORT,
+            username: configdev.MYSQL_USER, 
+            password: configdev.MYSQL_PASSWORD,
+            database: configdev.MYSQL_DATABASE,
+            logging: true
+        }
+    } else {
+        const configprod = await import ('../../config.json');
+        config = {
+            type: "mysql", 
+            extra: {
+                socketPath: `/cloudsql/${configprod.INSTANCE_CONNECTION_NAME}`
             },
-            username: config.MYSQL_USER, 
-            password: config.MYSQL_PASSWORD, 
+            username: configprod.MYSQL_USER,
+            password: configprod.MYSQL_PASSWORD,
             logging: true,
             database: 'visioedu',
-        });
-    } else {
-        return await createConnection({
-            type:"mysql", 
-            host:"", 
-            port:0,
-            username:"", 
-            password:"", 
-            database:"" 
-        });
+        }
     }
+
+    return await createConnection(config);
 }
-
-
-// export async function connect() {
-//     let connection;
-//     if (process.env.NODE_ENV === 'production'){
-//         connection = await createPool({
-//             socketPath: `/cloudsql/${config.INSTANCE_CONNECTION_NAME}`,
-//             user: config.MYSQL_USER,
-//             password: config.MYSQL_PASSWORD,
-//             connectionLimit: 10,
-//             database: 'visioedu'
-//         });
-//     } else {
-//         connection = await createPool({
-//             host: 'localhost',
-//             user: 'root',
-//             password: '@1g2o3m4e5s',
-//             database: 'visioedu',
-//             connectionLimit: 10
-//         });
-//     }
-
-//     return connection;
-// }
