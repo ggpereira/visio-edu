@@ -3,7 +3,7 @@ dfEscolas <- read.csv('ESCOLAS.CSV', sep = '|', header = TRUE)
 View(dfEscolas)
 
 # Colunas que serão extraídas para o novo dataframe(tabela)
-filter <- c('CO_ENTIDADE', 
+columns <- c('CO_ENTIDADE', 
             'NO_ENTIDADE', 
             'TP_SITUACAO_FUNCIONAMENTO', 
             'CO_REGIAO', 
@@ -53,12 +53,13 @@ dfFiltrado <- dfEscolas[
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_MEDIO == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_MEDIO)) |
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_INTEGR == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_INTEGR)) |
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_NORMAL == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_NORMAL)) |  
-                (dfEscolas$IN_COMUM_EJA_MEDIO == 1) & !is.na(dfEscolas$IN_COMUM_EJA_MEDIO) , filter]
+                (dfEscolas$IN_COMUM_EJA_MEDIO == 1) & !is.na(dfEscolas$IN_COMUM_EJA_MEDIO) , columns]
 
 
 
 View(dfFiltrado)
 
 # Gera novo csv após o processamento
+# O csv gerado, é útil para a utilização no banco de dados
 write.csv(dfFiltrado, 'ESCOLAS_FILTRADO.csv', row.names = F)
 
