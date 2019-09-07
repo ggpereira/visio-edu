@@ -61,5 +61,5 @@ View(dfFiltrado)
 
 # Gera novo csv após o processamento
 # O csv gerado, é útil para a utilização no banco de dados
-write.csv(dfFiltrado, 'ESCOLAS_FILTRADO.csv', row.names = F)
+write.csv(dfFiltrado, 'ESCOLAS_FILTRADO.csv', na = '', row.names = F)
 
