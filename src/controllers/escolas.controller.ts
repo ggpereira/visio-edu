@@ -19,14 +19,20 @@ export async function getEscolas(req: Request, res: Response): Promise<Response>
 
     // Calcula o offset das linhas
     const offset = calculaOffset(page, per_page);
-    const builder = conn.createQueryBuilder()
-    builder.select('*').from('escolas', 'escolas').limit(per_page).offset(offset);
+    var builder = conn.createQueryBuilder()
+    builder.select('*').from('escolas', 'escolas').limit(per_page).offset(offset)
+    
+    if(filterBy && filter){
+        builder = queryWhere(filterBy, filter, builder);
+    }
 
     const escolas: Escola[] = await builder.execute()
     const response = {
         data: escolas,
         per_page: per_page,
-        maxPages: maxPages
+        maxPages: maxPages,
+        filter: filter,
+        filterBy: filterBy,
     }
 
     return res.json(response);
@@ -34,4 +40,14 @@ export async function getEscolas(req: Request, res: Response): Promise<Response>
 
 function calculaOffset(page: number, limit: number): number{
     return ((page - 1) * limit) + 1;
+}
+
+function queryWhere(filterBy: String, filter: String, builder: any): any{
+    if(filterBy === "cidade"){
+        return builder.leftJoin("cidades", "cidades", "cidades.codigo = escolas.co_municipio").where("cidades.municipio = :nome",{nome: filter});
+    }
+    if(filterBy === "estado"){
+        return builder.leftJoin("estados", "estados", "estados.codigo = escolas.co_uf").where("estados.estado = :nome",{nome: filter});
+    }
+    return "";
 }
