@@ -24,9 +24,9 @@ LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (
 	codigo,
-    estado
+    estado,
+    uf
 );
-
 
 ## CARREGA OS DADOS DA TABELA DE ESCOLAS
 LOAD DATA LOCAL INFILE 'C:/Users/gabri/Documents/Projetos/PSW2/microdados_ed_basica_2018/DADOS/ESCOLAS/ESCOLAS_FILTRADO.csv'  
@@ -61,11 +61,15 @@ IGNORE 1 LINES
     qt_salas_utilizadas,
     in_equip_retro_projetor, 
     in_equip_multimidia, 
-    qt_comp_aluno, 
-    in_internet, 
-	in_bandalarga, 
+    @qt_comp_aluno, 
+    @in_internet, 
+	@in_bandalarga, 
     qt_funcionarios, 
     tp_aee, 
     tp_localizacao_diferenciada
-);
-
+)
+SET 
+qt_comp_aluno = nullif(@qt_comp_aluno, ''),
+in_internet = nullif(@in_internet, ''),
+in_bandalarga = nullif(@in_bandalarga, '')
+;

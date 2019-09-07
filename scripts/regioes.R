@@ -1,3 +1,5 @@
+## FAZ O RECORTE DAS COLUNAS DOS DADOS DE CIDADE E ESTADO
+
 setwd("C:/Users/gabri/Documents/Projetos/PSW2/")
 
 # Carrega csv com os munícipios brasileiros
