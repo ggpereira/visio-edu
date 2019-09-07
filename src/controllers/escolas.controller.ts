@@ -49,5 +49,5 @@ function queryWhere(filterBy: String, filter: String, builder: any): any{
     if(filterBy === "estado"){
         return builder.leftJoin("estados", "estados", "estados.codigo = escolas.co_uf").where("estados.estado = :nome",{nome: filter});
     }
-    return "";
+    return builder;
 }
