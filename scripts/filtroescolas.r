@@ -41,7 +41,13 @@ columns <- c('CO_ENTIDADE',
             'IN_ESP_EXCLUSIVA_MEDIO_MEDIO', 
             'IN_ESP_EXCLUSIVA_MEDIO_INTEGR',
             'IN_ESP_EXCLUSIVA_EJA_MEDIO',
-            'IN_ESP_EXCLUSIVA_MEDIO_NORMAL'
+            'IN_ESP_EXCLUSIVA_MEDIO_NORMAL',
+            'IN_EJA',
+            'IN_PROFISSIONALIZANTE',
+            'IN_COMUM_EJA_PROF',
+            'IN_ESP_EXCLUSIVA_EJA_PROF', 
+            'IN_ESP_EXCLUSIVA_EJA_MEDIO',
+            'IN_ESP_EXCLUSIVA_PROF'
             )
 
 # Filtragem por linha e recorte nas colunas
@@ -53,7 +59,15 @@ dfFiltrado <- dfEscolas[
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_MEDIO == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_MEDIO)) |
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_INTEGR == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_INTEGR)) |
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_NORMAL == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_NORMAL)) |  
-                (dfEscolas$IN_COMUM_EJA_MEDIO == 1) & !is.na(dfEscolas$IN_COMUM_EJA_MEDIO) , columns]
+                (dfEscolas$IN_COMUM_EJA_MEDIO == 1 & !is.na(dfEscolas$IN_COMUM_EJA_MEDIO)) | 
+                (dfEscolas$IN_EJA == 1 & !is.na(dfEscolas$IN_EJA)) |
+                (dfEscolas$IN_PROFISSIONALIZANTE == 1 & !is.na(dfEscolas$IN_PROFISSIONALIZANTE)) |
+                (dfEscolas$IN_COMUM_EJA_PROF == 1 & !is.na(dfEscolas$IN_COMUM_EJA_PROF)) | 
+                (dfEscolas$IN_ESP_EXCLUSIVA_EJA_MEDIO == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_EJA_MEDIO)) | 
+                (dfEscolas$IN_ESP_EXCLUSIVA_EJA_PROF == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_EJA_PROF)) |
+                (dfEscolas$IN_COMUM_PROF == 1 & !is.na(dfEscolas$IN_COMUM_PROF)) |
+                (dfEscolas$IN_ESP_EXCLUSIVA_PROF == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_PROF))
+                  ,columns]
 
 
 

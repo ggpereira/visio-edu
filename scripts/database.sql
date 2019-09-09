@@ -14,6 +14,7 @@ CREATE TABLE estados(
     uf	varchar(25)
 )ENGINE = InnoDB;
 
+
 CREATE TABLE escolas(
 	co_entidade int not null, 
     no_entidade varchar(256) ,
@@ -50,3 +51,38 @@ CREATE TABLE escolas(
     PRIMARY KEY(co_entidade)
 )ENGINE = InnoDB;
 
+CREATE TABLE dados_enem(
+	nu_inscricao bigint not null,
+    nu_idade int,
+    tp_sexo char, 
+    tp_st_conclusao int, 
+    tp_ano_concluiu int, 
+    in_treineiro int, 
+    in_baixa_visao int, 
+    in_cegueira int, 
+    in_surdez int, 
+    in_deficiencia_auditiva int,
+    in_surdo_cegueira int, 
+    in_deficiencia_fisica int, 
+    in_deficiencia_mental int, 
+    in_deficit_atencao int, 
+    in_dislexia int, 
+    in_discalculia int, 
+    in_autismo int, 
+    in_visao_monocular int, 
+    in_outra_def int, 
+    tp_presenca_cn int, 
+    tp_presenca_ch int, 
+    tp_presenca_lc int, 
+    tp_presenca_mt int, 
+    nu_nota_cn double, 
+    nu_nota_ch double,
+    nu_nota_lc double, 
+    nu_nota_mt double, 
+    tp_lingua int, 
+    tp_status_redacao int, 
+    nu_nota_redacao double, 
+    co_escola int,
+    foreign key(co_escola) references escolas(co_entidade),
+    primary key(nu_inscricao)
+)ENGINE = InnoDB;
