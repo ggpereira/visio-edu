@@ -83,6 +83,10 @@ CREATE TABLE dados_enem(
     tp_status_redacao int, 
     nu_nota_redacao double, 
     co_escola int,
+    co_municipio_esc int,
+    co_uf_esc int,
     foreign key(co_escola) references escolas(co_entidade),
+    foreign key (co_municipio_esc) references cidades(codigo), 
+    foreign key (co_uf_esc) references estados(codigo),
     primary key(nu_inscricao)
-)ENGINE = InnoDB;
+) ENGINE = InnoDB;

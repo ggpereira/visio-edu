@@ -60,14 +60,13 @@ dfFiltrado <- dfEscolas[
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_INTEGR == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_INTEGR)) |
                 (dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_NORMAL == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_MEDIO_NORMAL)) |  
                 (dfEscolas$IN_COMUM_EJA_MEDIO == 1 & !is.na(dfEscolas$IN_COMUM_EJA_MEDIO)) | 
-                (dfEscolas$IN_EJA == 1 & !is.na(dfEscolas$IN_EJA)) |
-                (dfEscolas$IN_PROFISSIONALIZANTE == 1 & !is.na(dfEscolas$IN_PROFISSIONALIZANTE)) |
                 (dfEscolas$IN_COMUM_EJA_PROF == 1 & !is.na(dfEscolas$IN_COMUM_EJA_PROF)) | 
-                (dfEscolas$IN_ESP_EXCLUSIVA_EJA_MEDIO == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_EJA_MEDIO)) | 
+               (dfEscolas$IN_ESP_EXCLUSIVA_EJA_MEDIO == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_EJA_MEDIO)) | 
                 (dfEscolas$IN_ESP_EXCLUSIVA_EJA_PROF == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_EJA_PROF)) |
                 (dfEscolas$IN_COMUM_PROF == 1 & !is.na(dfEscolas$IN_COMUM_PROF)) |
                 (dfEscolas$IN_ESP_EXCLUSIVA_PROF == 1 & !is.na(dfEscolas$IN_ESP_EXCLUSIVA_PROF))
                   ,columns]
+
 
 
 

@@ -5,6 +5,7 @@ import cors from 'cors';
 // Routes
 import IndexRoutes from './routes/index.routes';
 import EscolasRoutes from './routes/escolas.routes';
+import EnemRoutes from './routes/enem.routes';
 
 export class App{
 
@@ -31,6 +32,7 @@ export class App{
     routes() {
         this.app.use(IndexRoutes);
         this.app.use('/escolas', EscolasRoutes);
+        this.app.use('/dados_enem', EnemRoutes);
     }
 
     async listen() {
