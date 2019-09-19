@@ -51,3 +51,80 @@ CREATE TABLE escolas(
     PRIMARY KEY(co_entidade)
 )ENGINE = InnoDB;
 
+
+CREATE TABLE estatisticas_escola_estado(
+	codigo int not null, 
+    estado varchar(400) not null, 
+    uf char(2) not null,
+    qtdEscolas int not null, 
+    porcentagemAguaFiltrada float not null, 
+    porcentagemAguaInexistente float not null, 
+    porcentagemEsgotoInexistente float not null, 
+    porcentagemEnergiaInexistente float not null, 
+    porcentagemLixoRecicla float not null, 
+    porcentagemLixoColetaPeriodica float not null, 
+    porcentagemLaboratorioInformatica float not null, 
+    porcentagemSalaAtendimentoEspecial float not null, 
+    porcentagemLaboratorioCiencias float not null, 
+    porcentagemBiblioteca float not null,
+    porcentagemSalaLeitura float not null,
+    porcentagemInternet float not null, 
+    porcentagemBandaLarga float not null, 
+    PRIMARY KEY(codigo)
+)ENGINE = InnoDB;
+
+CREATE TABLE estatisticas_escola_cidade(
+	codigo int not null, 
+    municipio varchar(400) not null,
+    qtdEscolas int not null, 
+    porcentagemAguaFiltrada float not null, 
+    porcentagemAguaInexistente float not null, 
+    porcentagemEsgotoInexistente float not null, 
+    porcentagemEnergiaInexistente float not null, 
+    porcentagemLixoRecicla float not null, 
+    porcentagemLixoColetaPeriodica float not null, 
+    porcentagemLaboratorioInformatica float not null, 
+    porcentagemSalaAtendimentoEspecial float not null, 
+    porcentagemLaboratorioCiencias float not null, 
+    porcentagemBiblioteca float not null,
+    porcentagemSalaLeitura float not null,
+    porcentagemInternet float not null, 
+    porcentagemBandaLarga float not null, 
+    PRIMARY KEY(codigo)
+)ENGINE = InnoDB;
+
+CREATE TABLE estatisticas_enem_escola(
+	co_entidade int not null, 
+    no_entidade varchar(400) not null, 
+    estado varchar(400) not null, 
+    cidade varchar(400) not null, 
+    mediaGeral float not null, 
+    mediaCn float not null, 
+    mediaCh float not null, 
+    mediaMat float not null, 
+    mediaRedacao float not null,
+    FOREIGN KEY(co_entidade) references escolas(co_entidade),
+    PRIMARY KEY(co_entidade)
+)ENGINE = InnoDb;
+
+
+CREATE TABLE estatisticas_enem_cidade(
+	codigo int not null, 
+    municipio varchar(400), 
+    estado varchar(400), 
+    mediaGeral float not null, 
+    mediaCn float not null, 
+    mediaMat float not null, 
+    mediaRedacao float not null,
+    PRIMARY KEY(codigo)
+)ENGINE = InnoDB;
+
+CREATE TABLE estatisticas_enem_estado(
+	codigo int not null, 
+    estado varchar(400), 
+    mediaGeral float not null, 
+    mediaCn float not null, 
+    mediaMat float not null, 
+    mediaRedacao float not null, 
+    PRIMARY KEY(codigo)
+)ENGINE = InnoDb;
