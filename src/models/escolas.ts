@@ -1,4 +1,4 @@
-export interface Escola{
+export interface IEscola{
     co_entidade: number 
     no_entidade: string
     tp_situacao_funcionamento: number

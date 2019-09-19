@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { getConnection } from 'typeorm';
-import { Escola } from '../models/escolas';
-import { Estado } from '../models/estado';
-import { Cidade } from '../models/cidade';
+import { IEscola } from '../models/escolas';
+import { IEstado } from '../models/estado';
+import { ICidade } from '../models/cidade';
 
 // Processa a busca por escolas baseado em filtros
 export async function getEscolas(req: Request, res: Response): Promise<Response> {
@@ -28,7 +28,7 @@ export async function getEscolas(req: Request, res: Response): Promise<Response>
         builder = queryWhere(filterBy, filter, builder);
     }
 
-    const escolas: Escola[] = await builder.execute()
+    const escolas: IEscola[] = await builder.execute()
     const response = {
         data: escolas,
         per_page: per_page,
@@ -84,7 +84,7 @@ export async function getEstatisticasEscolas(req: Request, res: Response): Promi
 }
 
 // Retorna estatísticas por cidade
-function getEstatisticaCidade(cidade: Cidade, dadosEscolas: any) {
+function getEstatisticaCidade(cidade: ICidade, dadosEscolas: any) {
     let escolasCidade = dadosEscolas.filter((escola: any) => {
         return escola.co_municipio  === cidade.codigo;
     })
@@ -127,7 +127,7 @@ function getEstatisticaCidade(cidade: Cidade, dadosEscolas: any) {
 }
 
 // Retorna estatísticas por estado
-function getEstatisticaEstado(estado: Estado, dadosEscolas: any) {
+function getEstatisticaEstado(estado: IEstado, dadosEscolas: any) {
     // Retorna escolas pelo código do estado
     let escolasEstado = dadosEscolas.filter((escola: any) => {
         return escola.co_uf === estado.codigo;
