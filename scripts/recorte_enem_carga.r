@@ -73,6 +73,6 @@ for(index in 0:12){
     ,cols]
     
   
-  dbWriteTable(vDB, name="dados_enem_test", value=df_result, overwrite=FALSE, append=TRUE, sep=",", row.names=FALSE)
+  dbWriteTable(vDB, name="dados_enem", value=df_result, overwrite=FALSE, append=TRUE, sep=",", row.names=FALSE)
   print(paste0("Finished chunk ", index))
 }

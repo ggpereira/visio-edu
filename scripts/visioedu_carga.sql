@@ -11,7 +11,8 @@ LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (
 	codigo,
-    municipio
+    municipio,
+    uf
 );
 
 ## CARREGA OS DADOS DA TABELA DE ESTADOS

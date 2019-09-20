@@ -2,12 +2,12 @@
 
 setwd("C:/Users/gabri/Documents/Projetos/PSW2/")
 
-# Carrega csv com os munícipios brasileiros
-dfRegioes <- read.csv('Lista_Municípios_com_IBGE_Brasil_Versao_CSV.csv', sep = ';')
+# Carrega csv com os mun?cipios brasileiros
+dfRegioes <- read.csv('Lista_MunicÃ­pios_com_IBGE_Brasil_Versao_CSV.csv', sep = ';')
 
 
 # Colunas de interesse 
-cols <- c('IBGE7', 'Município')
+cols <- c('IBGE7', 'MunicÃ­pio', 'UF' )
 
 # Recorte das colunas
 dfRecorteCidades <- dfRegioes[, cols]
