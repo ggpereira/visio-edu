@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getDadosEnem } from '../controllers/dadosEnem.controller';
-import { getNotasEnem } from '../controllers/dadosEnem.controller'
+import { getDadosEnem } from '../controllers/dados_enem.controller';
+import { getNotasEnem } from '../controllers/dados_enem.controller'
 
 const router = Router();
 

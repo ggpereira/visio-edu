@@ -51,7 +51,6 @@ CREATE TABLE escolas(
     PRIMARY KEY(co_entidade)
 )ENGINE = InnoDB;
 
-
 CREATE TABLE estatisticas_escola_estado(
 	codigo int not null, 
     estado varchar(400) not null, 
@@ -113,7 +112,8 @@ CREATE TABLE estatisticas_enem_cidade(
     municipio varchar(400), 
     estado varchar(400), 
     mediaGeral float not null, 
-    mediaCn float not null, 
+    mediaCn float not null,
+    mediaCh float not null,
     mediaMat float not null, 
     mediaRedacao float not null,
     PRIMARY KEY(codigo)
@@ -123,7 +123,8 @@ CREATE TABLE estatisticas_enem_estado(
 	codigo int not null, 
     estado varchar(400), 
     mediaGeral float not null, 
-    mediaCn float not null, 
+    mediaCn float not null,
+    mediaCh float not null,
     mediaMat float not null, 
     mediaRedacao float not null, 
     PRIMARY KEY(codigo)
