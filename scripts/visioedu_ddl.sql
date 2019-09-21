@@ -93,6 +93,7 @@ CREATE TABLE dados_enem(
 CREATE TABLE estatisticas_escola_estado(
 	codigo int not null, 
     estado varchar(400) not null, 
+    uf char(2) not null,
     qtdEscolas int not null, 
     porcentagemAguaFiltrada float not null, 
     porcentagemAguaInexistente float not null, 
