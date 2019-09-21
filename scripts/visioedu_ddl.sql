@@ -160,6 +160,7 @@ CREATE TABLE medias_enem_cidade(
     mediaMat float not null,
     mediaLc float not null, 
     mediaRedacao float not null,
+	FOREIGN KEY(codigo) references cidades(codigo),
     PRIMARY KEY(codigo)
 )ENGINE = InnoDB;
 
@@ -172,6 +173,7 @@ CREATE TABLE medias_enem_estado(
     mediaCh float not null,
     mediaMat float not null,
     mediaLc float not null,
-    mediaRedacao float not null, 
+    mediaRedacao float not null,
+    FOREIGN KEY(codigo) references estados(codigo),
     PRIMARY KEY(codigo)
 )ENGINE = InnoDb;
