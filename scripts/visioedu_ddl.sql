@@ -5,7 +5,8 @@ USE visioedu;
 
 CREATE TABLE cidades(
 	codigo int primary key, 
-	municipio varchar(255)
+	municipio varchar(255),
+    uf char(2)
 )ENGINE = InnoDB;
 
 CREATE TABLE estados(
