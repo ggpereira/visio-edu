@@ -31,8 +31,8 @@ export interface IEstatisticasEscolas_Cidade extends IEstatísticasEscolas{
     uf: string;
 }
 
-// Modelo para estatísticas com enem
-export interface IEstatisticaEnem{
+// Modelo para medias enem
+export interface IMediasEnem{
     mediaGeral: number;
     mediaCn: number;
     mediaCh: number;
@@ -40,8 +40,8 @@ export interface IEstatisticaEnem{
     mediaRedacao: number;
 }
 
-// Modelo para estatísticas por escola
-export interface IEstatisticaEnem_Escola extends IEstatisticaEnem{
+// Modelo para  medias por escola
+export interface IMediasEnem_Escola extends IMediasEnem{
     co_entidade: number;
     no_entidade: number;
     estado: string;
@@ -49,16 +49,16 @@ export interface IEstatisticaEnem_Escola extends IEstatisticaEnem{
     cidade: string;
 }
 
-// Modelo para estatísticas por cidade
-export interface IEstatisticaEnem_Cidade extends IEstatisticaEnem{
+// Modelo para medias por cidade
+export interface IMediasEnem_Cidade extends IMediasEnem{
     codigo: number;
     municipio: string;
     estado: string;
     uf: string;
 }
 
-// Modelo para estatísticas por estado
-export interface IEstatisticaEnem_Estado extends IEstatisticaEnem{
+// Modelo para medias por estado
+export interface IMediasEnem_Estado extends IMediasEnem{
     codigo: number;
     estado: string;
     uf: string;
