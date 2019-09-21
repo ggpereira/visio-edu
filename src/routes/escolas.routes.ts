@@ -1,10 +1,9 @@
 import { Router } from 'express'; 
-import { getEscolas } from '../controllers/escolas.controller';
-import { getEstatisticasEscolas } from '../controllers/escolas.controller';
+import { getEscolas, getEscolaByID } from '../controllers/escolas.controller';
 
 const router = Router();
 
 router.get('/', getEscolas);
-router.get('/estatisticas', getEstatisticasEscolas);
+router.get('/:co_entidade', getEscolaByID);
 
 export default router;
