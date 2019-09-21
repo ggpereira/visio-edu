@@ -8,8 +8,8 @@
 
 library(RMySQL)
 
-dbPass <- "ggp0898"
-dbUser <- "root"
+dbPass <- ""
+dbUser <- ""
 dbPort <- 3306 
 dbHost <- "localhost"
 dbDatabase <- "visioedu"
