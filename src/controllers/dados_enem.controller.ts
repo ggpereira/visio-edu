@@ -26,8 +26,6 @@ export async function getDadosEnem(req: Request, res: Response): Promise<Respons
         data: dados_enem,
         per_page: per_page,
         maxPages: maxPages,
-        filter: filter,
-        filterBy: filterBy,
     }
 
     return res.json(response);

@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { getConnection, Connection, SelectQueryBuilder } from 'typeorm';
 import { IEscola } from '../models/escolas';
-import { create } from 'domain';
 
  
 // Processa a busca por escolas baseado em filtros

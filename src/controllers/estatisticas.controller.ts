@@ -5,12 +5,28 @@ import { getConnection, Connection, SelectQueryBuilder } from 'typeorm';
 export async function getEstatistiscasMunicipio(req: Request, res: Response): Promise<Response>{
     const conn: Connection = getConnection();
     const queryBuilder = conn.createQueryBuilder();
+    const per_page = req.query.per_page || 70;
+    const page = req.query.page || 1;
     const orderBy = req.query.orderBy || 'municipio';
     const order = req.query.order || 'ASC';
     
-    queryBuilder.select("*").from("estatisticas_escola_cidade", "estatisticas_escola_cidade").orderBy(orderBy, order);
+    queryBuilder.select("*").from("estatisticas_escola_cidade", "estatisticas_escola_cidade")
 
-    const response = await queryBuilder.execute().catch((err) => {
+    let response: any = {};
+
+    if(queryBuilder.getQueryAndParameters()[1].length <= 0){
+        let rs = await conn.query('SELECT COUNT(codigo) as total FROM estatisticas_escola_cidade');
+        const maxPages = Math.ceil(rs[0].total / per_page);
+        const offset = calculaOffset(page, per_page);
+
+        queryBuilder.limit(per_page).offset(offset);
+        response.per_page = per_page;
+        response.maxPages = maxPages;
+    }
+
+    queryBuilder.orderBy(orderBy, order);
+
+    const rs = await queryBuilder.execute().catch((err) => {
         res.json({
             Error: {
                 message: "ocorreu um erro inesperado",
@@ -18,7 +34,12 @@ export async function getEstatistiscasMunicipio(req: Request, res: Response): Pr
         });
     });
 
-    return res.json(response);
+    if(response.per_page && response.maxPages){
+        response.data = rs;
+        return res.json(response);
+    }
+
+    return res.json(rs);
 }
 
 // Obtém estatísticas pelo código do estado
@@ -95,3 +116,8 @@ export async function getEstatisticasEstado(req: Request, res: Response): Promis
 
     return res.json(response);
 }
+
+function calculaOffset(page: number, limit: number): number {
+    return ((page - 1) * limit) + 1;
+}
+
