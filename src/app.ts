@@ -7,7 +7,7 @@ import IndexRoutes from './routes/index.routes';
 import EscolasRoutes from './routes/escolas.routes';
 import EnemRoutes from './routes/enem.routes';
 import EstatisticasRoutes from './routes/estatisticas.routes';
-
+import MediasRoutes from './routes/medias.routes';
 export class App{
 
     private app: Application;
@@ -35,6 +35,7 @@ export class App{
         this.app.use('/escolas', EscolasRoutes);
         this.app.use('/dados_enem', EnemRoutes);
         this.app.use('/estatisticas', EstatisticasRoutes);
+        this.app.use('/medias', MediasRoutes);
     }
 
     async listen() {
