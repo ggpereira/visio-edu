@@ -27,7 +27,7 @@ export async function getEstatisticasMunicipio(req: Request, res: Response): Pro
     queryBuilder.orderBy(orderBy, order);
 
     const rs = await queryBuilder.execute().catch((err) => {
-        res.json({
+        res.status(500).json({
             Error: {
                 message: "ocorreu um erro inesperado",
             }
@@ -63,7 +63,7 @@ export async function getEstatisticasByEstadoID(req: Request, res: Response): Pr
         });
     }
 
-    return res.json(response);
+    return res.json(response[0]);
 }
 
 // Obtém estatísticas pelo código do município
@@ -90,7 +90,7 @@ export async function getEstatisticasByMunicipioID(req: Request, res: Response):
         });
     }
 
-    return res.json(response);
+    return res.json(response[0]);
 }
 
 // Obtém estatísticas por estado

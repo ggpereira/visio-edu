@@ -4,9 +4,9 @@ import { getEstatisticasEstado, getEstatisticasMunicipio, getEstatisticasByEstad
 
 const router = Router();
 
-router.get('/estado', getEstatisticasEstado);
-router.get('/municipio', getEstatisticasMunicipio);
-router.get('/municipio/:codMunicipio', getEstatisticasByMunicipioID);
-router.get('/estado/:codEstado', getEstatisticasByEstadoID);
+router.get('/estados', getEstatisticasEstado);
+router.get('/municipios', getEstatisticasMunicipio);
+router.get('/municipios/:codMunicipio', getEstatisticasByMunicipioID);
+router.get('/estados/:codEstado', getEstatisticasByEstadoID);
 
 export default router;

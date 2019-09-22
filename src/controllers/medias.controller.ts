@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getConnection, Connection, SelectQueryBuilder } from 'typeorm';
+import { connect } from 'net';
 
 export async function getMediasEscola(req: Request, res: Response): Promise<Response>{
     const conn: Connection = getConnection(); 
@@ -109,6 +110,88 @@ export async function getMediasCidade(req: Request, res: Response): Promise<Resp
 
     response.data = rs;
     return res.json(response);
+}
+
+export async function getMediasByCodEscola(req: Request, res: Response): Promise<Response>{
+    const conn: Connection = getConnection();
+    const codEscola = req.params.codEscola;
+
+    let queryBuilder = conn.createQueryBuilder();
+    queryBuilder.select("*").from("medias_enem_escola", "enem_medias_escola").where("codigo = :codEscola", {codEscola: codEscola});
+    
+    const rs: any[] = await queryBuilder.execute().catch((err) => {
+        return res.status(500).json({
+            Error: {
+                message: "ocorreu um erro inesperado",
+            }
+        });
+    });
+
+
+    if (rs.length <= 0) {
+        res.status(404).json({
+            Error: {
+                message: "recurso não encontrado",
+            }
+        });
+    }
+
+    return res.json(rs[0]);
+}
+
+export async function getMediasByCodEstado(req: Request, res: Response): Promise<Response>{
+    const conn: Connection = getConnection();
+    const codEstado = req.params.codEstado;
+
+    let queryBuilder = conn.createQueryBuilder();
+    queryBuilder.select("*").from("medias_enem_estado", "enem_medias_estado").where("codigo = :codEstado", {codEstado: codEstado});
+    
+    const rs: any[] = await queryBuilder.execute().catch((err)=>{
+        return res.status(500).json({
+            Error: {
+                message: "ocorreu um erro inesperado",
+            }
+        });
+    });
+
+
+    if (rs.length <= 0) {
+        res.status(404).json({
+            Error: {
+                message: "recurso não encontrado",
+            }
+        });
+    }
+
+    return res.json(rs[0]);
+}
+
+export async function getMediasByCodCidade(req: Request, res: Response): Promise<Response>{
+    const conn: Connection = getConnection();
+    const codCidade = req.params.codMunicipio;
+
+    console.log(codCidade);
+
+    let queryBuilder = conn.createQueryBuilder();
+    queryBuilder.select("*").from("medias_enem_cidade", "medias_enem_cidade").where("codigo = :codCidade", {codCidade: codCidade});
+
+    const rs: any[] = await queryBuilder.execute().catch((err) => {
+        return res.status(500).json({
+            Error:{
+                message: "ocorreu um erro inesperado",
+            }
+        });
+    });
+
+    if (rs.length <= 0) {
+        res.status(404).json({
+            Error: {
+                message: "recurso não encontrado",
+            }
+        });
+    }
+
+    return res.json(rs[0]);
 }
 
 function calculaOffset(page: number, limit: number): number {
