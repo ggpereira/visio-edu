@@ -20,7 +20,7 @@ export async function getMediasEscola(req: Request, res: Response): Promise<Resp
     let response: any = {};
 
     if(queryBuilder.getQueryAndParameters()[1].length <= 0){
-        let rs = await conn.query('SELECT COUNT(co_entidade) as total FROM medias_enem_escola');
+        let rs = await conn.query('SELECT COUNT(codigo) as total FROM medias_enem_escola');
         const maxPages = Math.ceil(rs[0].total / per_page);
         const offset = calculaOffset(page, per_page);
 

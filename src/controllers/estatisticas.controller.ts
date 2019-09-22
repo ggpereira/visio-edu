@@ -2,11 +2,11 @@ import { Request, Response } from 'express';
 import { getConnection, Connection, SelectQueryBuilder } from 'typeorm';
 
 // Obtém estatísticas pelo município
-export async function getEstatistiscasMunicipio(req: Request, res: Response): Promise<Response>{
+export async function getEstatisticasMunicipio(req: Request, res: Response): Promise<Response>{
     const conn: Connection = getConnection();
     const queryBuilder = conn.createQueryBuilder();
-    const per_page = req.query.per_page;
-    const page = req.query.page;
+    const per_page = req.query.per_page || 70;
+    const page = req.query.page || 1;
     const orderBy = req.query.orderBy || 'municipio';
     const order = req.query.order || 'ASC';
     
@@ -15,7 +15,7 @@ export async function getEstatistiscasMunicipio(req: Request, res: Response): Pr
     let response: any = {};
 
     if(queryBuilder.getQueryAndParameters()[1].length <= 0){
-        let rs = await conn.query('SELECT COUNT(co_entidade) as total FROM estatisticas_escola_cidade');
+        let rs = await conn.query('SELECT COUNT(codigo) as total FROM estatisticas_escola_cidade');
         const maxPages = Math.ceil(rs[0].total / per_page);
         const offset = calculaOffset(page, per_page);
 
