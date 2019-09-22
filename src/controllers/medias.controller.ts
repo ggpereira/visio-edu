@@ -107,12 +107,8 @@ export async function getMediasCidade(req: Request, res: Response): Promise<Resp
         });
     });
 
-    if(response.per_page && response.maxPages){
-        response.data = rs;
-        return res.json(response)
-    }
-
-    return res.json(rs);
+    response.data = rs;
+    return res.json(response);
 }
 
 function calculaOffset(page: number, limit: number): number {
