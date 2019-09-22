@@ -39,7 +39,9 @@ export async function getEscolas(req: Request, res: Response): Promise<Response>
 
     // Obtém os dados da consulta
     const dataEscolas = await queryBuilder.execute().catch((e) => {
-        return res.status(500).send('ocorreu um erro inesperado');
+        return res.status(500).json(({
+            Error: "ocorreu um erro inesperado",
+        }));
     });
 
     response.data = dataEscolas;
@@ -113,11 +115,15 @@ export async function  getEscolaByID(req: Request, res: Response): Promise<Respo
     //SELECT * FROM escolas WHERE co_entidade = ?
     queryBuilder.select("*").from("escolas", "escolas").where("co_entidade = :co_entidade", {co_entidade: co_entidade});
     const result: IEscola[] = await queryBuilder.execute().catch((e) => {
-        return res.status(500).send('ocorreu um erro inesperado');
+        return res.status(500).json({
+            Error: "ocorreu um erro inesperado",
+        })
     });
 
     if(result.length <= 0 ) {
-        res.status(404).send('Recurso não encontrado');
+        res.status(404).json({
+            Error: "recurso não encontrado",
+        })
     }
 
     return res.json(result[0]);

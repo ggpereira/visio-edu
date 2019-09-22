@@ -37,13 +37,3 @@ function calculaOffset(page: number, limit: number): number {
     return ((page - 1) * limit) + 1;
 }
 
-export async function getNotasEnem(req: Request, res: Response): Promise<Response> {
-    const conn = getConnection()
-
-    let response = {
-        data: "teste"
-    }
-
-    return res.json(response)
-}
-
