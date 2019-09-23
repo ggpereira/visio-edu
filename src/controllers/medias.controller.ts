@@ -14,7 +14,7 @@ export async function getMediasEscola(req: Request, res: Response): Promise<Resp
     let queryBuilder = conn.createQueryBuilder();
 
     queryBuilder.select("*").from("medias_enem_escola", "medias_enem_escola");
-    queryBuilder = setFilter(queryBuilder, {filterByCidade, filterByEstado});
+    queryBuilder = setQueryFilters(queryBuilder, {filterByCidade, filterByEstado});
     queryBuilder.orderBy(orderBy, order)
 
 
@@ -44,23 +44,37 @@ export async function getMediasEscola(req: Request, res: Response): Promise<Resp
 }
 
 
-function setFilter(queryBuilder: SelectQueryBuilder<any>, filter: any): SelectQueryBuilder<any>{
-    if(filter.filterByCidade){
-        return queryBuilder.where("cidade = :nomeCidade", {nomeCidade: filter.filterByCidade});
-    } else if(filter.filterByEstado){
-        return queryBuilder.where("estado = :nomeEstado", {nomeEstado: filter.filterByEstado});
+function setQueryFilters(queryBuilder: SelectQueryBuilder<any>, queryParams: any): SelectQueryBuilder<any> {
+    // filtro por estado
+    if (queryParams.filterByEstado) {
+        queryBuilder = createQueryFilter(queryBuilder, "estado = :estado", { estado: queryParams.filterByEstado });
     }
-    return queryBuilder;
+    // filtro por municipio
+    if (queryParams.filterByMunicipio) {
+        queryBuilder = createQueryFilter(queryBuilder, "municipio = :municipio", { municipio: queryParams.filterByMunicipio });
+    }
+
+    return queryBuilder
+}
+
+
+// Adiciona o where na query
+// Se já houver algum parâmetro na query usa query.andWhere()
+function createQueryFilter(queryBuilder: SelectQueryBuilder<any>, queryWhere: string, filter: any) {
+    return queryBuilder.getQueryAndParameters()[1].length <= 0 ? queryBuilder.where(queryWhere, filter) : queryBuilder.andWhere(queryWhere, filter);
 }
 
 export async function getMediasEstado(req: Request, res: Response): Promise<Response>{
     const conn: Connection = getConnection();
     const orderBy = req.query.orderBy || 'estado';
     const order = req.query.order || 'ASC';
+    const filterByEstado = req.query.estado;
 
     let queryBuilder = conn.createQueryBuilder();
     
-    queryBuilder.select("*").from("medias_enem_estado", "medias_enem_estado").orderBy(orderBy, order);
+    queryBuilder.select("*").from("medias_enem_estado", "medias_enem_estado")
+    queryBuilder = setQueryFilters(queryBuilder, {filterByEstado});
+    queryBuilder.orderBy(orderBy, order);
     
     const rs = await queryBuilder.execute().catch((err)=>{
         return res.json({
@@ -80,11 +94,12 @@ export async function getMediasCidade(req: Request, res: Response): Promise<Resp
     const orderBy = req.query.orderBy || 'municipio';
     const order = req.query.order || 'ASC'
     const filterByEstado = req.query.estado;
+    const filterByMunicipio = req.query.municipio;
 
     let queryBuilder = conn.createQueryBuilder();
 
     queryBuilder.select("*").from("medias_enem_cidade", "medias_enem_cidade"); 
-    queryBuilder = setFilter(queryBuilder, {filterByEstado});
+    queryBuilder = setQueryFilters(queryBuilder, {filterByEstado, filterByMunicipio});
 
     let response: any = {};
 

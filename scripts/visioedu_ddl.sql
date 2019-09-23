@@ -134,12 +134,13 @@ CREATE TABLE estatisticas_escola_cidade(
     PRIMARY KEY(codigo)
 )ENGINE = InnoDB;
 
+
 CREATE TABLE medias_enem_escola(
 	co_entidade int not null, 
     no_entidade varchar(400) not null, 
     estado varchar(400) not null, 
     uf char(2),
-    cidade varchar(400) not null, 
+    municipio varchar(400) not null, 
     mediaGeral float not null, 
     mediaCn float not null, 
     mediaCh float not null, 
