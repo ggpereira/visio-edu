@@ -136,7 +136,7 @@ if (queryParams.filterByMunicipio) {
     queryBuilder = createQueryFilter(queryBuilder, "municipio = :municipio", { municipio: queryParams.filterByMunicipio });
 }
 
-return queryBuilder
+    return queryBuilder
 }
 
 // Adiciona o where na query
