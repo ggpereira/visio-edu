@@ -153,9 +153,9 @@ CREATE TABLE medias_enem_escola(
 
 CREATE TABLE medias_enem_cidade(
 	codigo int not null, 
-    municipio varchar(400), 
-    estado varchar(400),
-    uf char(2),
+    municipio varchar(400) not null, 
+    estado varchar(400) not null,
+    uf char(2) not null,
     mediaGeral float not null, 
     mediaCn float not null,
     mediaCh float not null,
