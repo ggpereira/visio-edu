@@ -84,7 +84,7 @@ export async function getMediasEstado(req: Request, res: Response): Promise<Resp
         })
     });
 
-    return res.json(rs);
+    return res.json({data: rs});
 }
 
 export async function getMediasCidade(req: Request, res: Response): Promise<Response>{
