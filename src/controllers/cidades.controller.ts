@@ -4,7 +4,7 @@ import { getConnection, Connection } from 'typeorm';
 
 export async function getMunicipios(req: Request, res: Response): Promise<Response>{
     const conn: Connection = getConnection();
-    const rs = await conn.query("SELECT * FROM cidades ORDER BY ").catch((err) => {
+    const rs = await conn.query("SELECT * FROM cidades ORDER BY municipio ASC").catch((err) => {
         return res.status(500).json({
             Error: {
                 message: "ocorreu um erro inesperado",
