@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getConnection, Connection, SelectQueryBuilder } from 'typeorm';
+import { getConnection, Connection, SelectQueryBuilder, QueryBuilder } from 'typeorm';
 
 // Obtém estatísticas pelo município
 export async function getEstatisticasMunicipio(req: Request, res: Response): Promise<Response>{
@@ -131,12 +131,12 @@ function calculaOffset(page: number, limit: number): number {
 function setQueryFilters(queryBuilder: SelectQueryBuilder < any >, queryParams: any): SelectQueryBuilder < any > {
     // filtro por estado
     if(queryParams.filterByEstado) {
-    queryBuilder = createQueryFilter(queryBuilder, "estado = :estado", { estado: queryParams.filterByEstado });
-}
-// filtro por municipio
-if (queryParams.filterByMunicipio) {
-    queryBuilder = createQueryFilter(queryBuilder, "municipio = :municipio", { municipio: queryParams.filterByMunicipio });
-}
+        queryBuilder = createQueryFilter(queryBuilder, "estado = :estado", { estado: queryParams.filterByEstado });
+    }
+    // filtro por municipio
+    if (queryParams.filterByMunicipio) {
+        queryBuilder = createQueryFilter(queryBuilder, "municipio LIKE :municipio", { municipio: `%${queryParams.filterByMunicipio}%`});
+    }
 
     return queryBuilder
 }
