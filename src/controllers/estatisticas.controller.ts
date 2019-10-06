@@ -119,7 +119,9 @@ export async function getEstatisticasEstado(req: Request, res: Response): Promis
         });
     });
 
-    return res.json(response);
+    return res.json({
+        data: response,
+    });
 }
 
 function calculaOffset(page: number, limit: number): number {

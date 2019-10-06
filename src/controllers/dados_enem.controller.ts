@@ -47,7 +47,9 @@ export async function getDadosEnemByEscola(req: Request, res: Response): Promise
         });
     });
     
-    return res.json(response);
+    return res.json({
+        data: response
+    });
 }
 
 
