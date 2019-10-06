@@ -128,7 +128,7 @@ function calculaOffset(page: number, limit: number): number {
     return ((page - 1) * limit) + 1;
 }
 
-function setQueryFilters(queryBuilder: SelectQueryBuilder < any >, queryParams: any): SelectQueryBuilder < any > {
+function setQueryFilters(queryBuilder: SelectQueryBuilder<any>, queryParams: any): SelectQueryBuilder <any> {
     // filtro por estado
     if(queryParams.filterByEstado) {
         queryBuilder = createQueryFilter(queryBuilder, "estado = :estado", { estado: queryParams.filterByEstado });
