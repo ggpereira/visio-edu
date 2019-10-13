@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getConnection, Connection, SelectQueryBuilder } from 'typeorm';
-import { IEscola } from '../models/escolas';
+import { IEscola, ITransformEscola } from '../models/escolas';
 
  
 // Processa a busca por escolas baseado em filtros
@@ -15,6 +15,7 @@ export async function getEscolas(req: Request, res: Response): Promise<Response>
     const filterByMunicipio = req.query.municipio;
     const orderBy = req.query.orderBy || 'nome';
     const order = req.query.order || 'ASC';
+    const transformar = req.query.transformar;
 
     // Constrói a consulta base
     let queryBuilder = conn.createQueryBuilder();
@@ -43,7 +44,11 @@ export async function getEscolas(req: Request, res: Response): Promise<Response>
         }));
     });
 
-    response.data = dataEscolas;
+    if (transformar) {
+        response.data = getTransformedData(dataEscolas);
+    } else {
+        response.data = dataEscolas;
+    }
 
     return res.json(response);
 }
@@ -126,4 +131,130 @@ export async function  getEscolaByID(req: Request, res: Response): Promise<Respo
     }
 
     return res.json(result[0]);
+}
+
+
+function getTransformedData(data: Array<IEscola>): Array<ITransformEscola>{
+    let dataTransformed: Array<ITransformEscola> = [];
+    data.map((data: IEscola) => {
+        dataTransformed.push(transform(data));
+    })
+    return dataTransformed;
+}
+
+
+function transform(data: IEscola): ITransformEscola{
+    let escola: ITransformEscola;
+
+    return escola = {
+        co_entidade: data.co_entidade,
+        no_entidade: data.no_entidade,
+        situacao_funcionamento: situacaoFuncionamento(data.tp_situacao_funcionamento),
+        co_regiao: data.co_regiao,
+        co_uf: data.co_uf,
+        co_municipio: data.co_municipio,
+        dependencia: transformDependencia(data.tp_dependencia),          
+        tp_localização: transformLocalizacao(data.tp_localizacao),
+        agua_filtrada: booleanToText(Boolean(data.in_agua_filtrada)),
+        agua: booleanToText(!Boolean(data.in_agua_inexistente)),
+        energia: booleanToText(!Boolean(data.in_energia_inexistente)),
+        reciclagem: booleanToText(Boolean(data.in_lixo_recicla)),
+        esgoto: booleanToText(!Boolean(data.in_agua_inexistente)),
+        coletaDeLixo: booleanToText(Boolean(data.in_lixo_coleta_periodica)),
+        laboratorioDeInformatica: booleanToText(Boolean(data.in_laboratorio_informatica)),
+        salaAtendimentoEspecial: booleanToText(Boolean(data.in_sala_atendimento_especial)),
+        laboratorioCiencias: booleanToText(Boolean(data.in_laboratorio_ciencias)),
+        salaLeitura: booleanToText(Boolean(data.in_sala_leitura)),
+        qtSalas: data.qt_salas_existentes,
+        qtSalasUtilizadas: data.qt_salas_utilizadas,
+        retroprojetor: booleanToText(Boolean(data.in_equip_retro_projetor)),
+        equipamentoMultimidia: booleanToText(Boolean(data.in_equip_multimidia)),
+        qtCompAluno: data.qt_comp_aluno,
+        biblioteca: booleanToText(Boolean(data.in_biblioteca)),
+        bibliotecaSalaLeitura: booleanToText(Boolean(data.in_biblioteca_sala_leitura)),
+        internet: booleanToText(Boolean(data.in_internet)),
+        bandaLarga: booleanToText(Boolean(data.in_bandalarga)),
+        qtFuncionarios: data.qt_funcionarios,
+        tp_aee: transformAee(data.tp_aee),
+        tp_localizacao_diferenciada: transformLocalDif(data.tp_localizacao_diferenciada) 
+    };
+}
+
+function booleanToText(item: boolean){
+    return item ? 'Possui' : 'Não Possui';
+}
+
+function situacaoFuncionamento(item: number): string{
+    switch(item){
+        case 1: 
+            return "Em atividade";
+        case 2:
+            return "Paralisada";
+        case 3:
+            return "Extinta no ano do censo";
+        case 4:
+            return "Extinta em anos anteriores";
+        default:
+            return "Desconhecido";
+    }
+}
+
+function transformDependencia(item: number): string {
+    switch(item){
+        case 1:
+            return 'Federal';
+        case 2:
+            return 'Estadual';
+        case 3:
+            return 'Municipal';
+        case 4:
+            return 'Privada';
+        default: 
+            return 'Desconhecido';
+    }
+}
+
+function transformLocalizacao(item: number): string{
+    switch(item){
+        case 1:
+            return "Urbana";
+        case 2: 
+            return "Rural";
+        default:
+            return "Desconhecida";
+    }
+}
+
+function transformAee(item: number){
+    switch(item){
+        case 0:
+            return "Não oferece";
+        case 1:
+            return "Não exclusivamente";
+        case 2: 
+            return "Exclusivamente";
+        default:
+            return "Desconhecido";
+    }
+}
+
+function transformLocalDif(item: number): string{
+    switch(item){
+        case 0:
+            return "Não está em localização diferenciada";
+        case 1:
+            return "Área de assentamento";
+        case 2:
+            return "Terra indígena";
+        case 3:
+            return "Área remanescente de quilombos";
+        case 4:
+            return "Unidade de uso sustentável";
+        case 5: 
+            return "Unidade de uso sustentável em terra indígena";
+        case 6:
+            return "Unidade de uso sustentável em área remanescente de quilombos";
+        default:
+            return "Desconhecido";
+    }
 }
