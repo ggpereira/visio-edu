@@ -34,11 +34,11 @@ export interface IEscola{
 export interface ITransformEscola {
     co_entidade: number;
     no_entidade: string;
-    situacao_funcionamento: string; // 1 - Em ativdade 2 - Paralisada 3 - Extinta no ano do censo 4 - Extinta em anos anteriores
+    situacao_funcionamento: string; 
     co_regiao: number;
     co_uf: number;
     co_municipio: number;
-    dependencia: string;          // 1 - Federal 2 - Estadual 3 - municipial 4 - privada
+    dependencia: string;          
     tp_localização: string;
     agua_filtrada: string;
     agua: string;
@@ -60,6 +60,6 @@ export interface ITransformEscola {
     internet: string;
     bandaLarga: string;
     qtFuncionarios: number;
-    tp_aee: string; // 0 - Não oferece 1 - Não exclusivamente 2 - Exclusivamente
+    tp_aee: string; 
     tp_localizacao_diferenciada: string;
 }
