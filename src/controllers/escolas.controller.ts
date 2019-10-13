@@ -154,7 +154,7 @@ function transform(data: IEscola): ITransformEscola{
         co_uf: data.co_uf,
         co_municipio: data.co_municipio,
         dependencia: transformDependencia(data.tp_dependencia),          
-        tp_localização: transformLocalizacao(data.tp_localizacao),
+        tp_localizacao: transformLocalizacao(data.tp_localizacao),
         agua_filtrada: booleanToText(Boolean(data.in_agua_filtrada)),
         agua: booleanToText(!Boolean(data.in_agua_inexistente)),
         energia: booleanToText(!Boolean(data.in_energia_inexistente)),

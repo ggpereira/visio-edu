@@ -39,7 +39,7 @@ export interface ITransformEscola {
     co_uf: number;
     co_municipio: number;
     dependencia: string;          
-    tp_localização: string;
+    tp_localizacao: string;
     agua_filtrada: string;
     agua: string;
     energia: string;
