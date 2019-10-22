@@ -18,14 +18,13 @@ export async function connect(): Promise<Connection> {
     } else {
         const configprod = await import ('../../config.json');
         config = {
-            type: "mysql", 
-            extra: {
-                socketPath: `/cloudsql/${configprod.INSTANCE_CONNECTION_NAME}`
-            },
-            username: configprod.MYSQL_USER,
-            password: configprod.MYSQL_PASSWORD,
-            logging: true,
-            database: 'visioedu',
+            type: "mysql",
+            host: configprod.MYSQL_HOST,
+            port: configprod.MYSQL_PORT, 
+            username: configprod.MYSQL_USER, 
+            password: configprod.MYSQL_PASSWORD, 
+            database: configprod.MYSQL_DATABASE,
+            logging: true
         }
     }
 
