@@ -16,9 +16,6 @@ COPY . .
 # build project 
 RUN npm run build -ddd
 
-RUN ls dist/src/
-
-
 EXPOSE 8080
 
 # https://github.com/vishnubob/wait-for-it
