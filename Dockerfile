@@ -5,10 +5,21 @@ WORKDIR /usr/app/
 RUN apk update && apk upgrade && apk add --no-cache bash git openssh
 
 COPY package.json ./
-RUN npm install 
+
+## install typescript 
+RUN npm i -g typescript
+# install all dependencies of project
+RUN npm install -ddd
 
 COPY . . 
 
+# build project 
+RUN npm run build -ddd
+
+RUN ls dist/src/
+
+
 EXPOSE 8080
 
-CMD ["npm", "run", "build", "&&", "npm", "start"]
+# https://github.com/vishnubob/wait-for-it
+CMD ["./wait-for-it.sh","mysql:3306","--strict", "--timeout=60", "--", "npm", "start"]
