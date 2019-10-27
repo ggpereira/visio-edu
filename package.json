@@ -41,8 +41,7 @@
     "tsc-watch": "^2.4.0",
     "typeorm": "^0.2.18",
     "typescript": "^3.5.3",
-    "ts-node": "^8.3.0"       
-
+    "ts-node": "^8.3.0"
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "^3.3.0",
