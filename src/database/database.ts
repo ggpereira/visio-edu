@@ -4,14 +4,15 @@ import { createConnection, Connection, ConnectionOptions } from "typeorm";
 export async function connect(): Promise<Connection> {
     let config: ConnectionOptions;
     
-    if(process.env.NODE_ENV === "production") {        
+    if(process.env.NODE_ENV === "production") {
+        const configprod = await import ('../../config.json');
         config = {
             type: "mysql",
-            host: process.env.MYSQL_HOST,
-            port: Number(process.env.MYSQL_PORT),
-            username: process.env.MYSQL_USER,
-            password: process.env.MYSQL_PASSWORD, 
-            database: process.env.MYSQL_DATABASE, 
+            host: process.env.MYSQL_HOST || configprod.MYSQL_HOST,
+            port: Number(process.env.MYSQL_PORT) || configprod.MYSQL_PORT, 
+            username: process.env.MYSQL_USER || configprod.MYSQL_USER, 
+            password: process.env.MYSQL_PASSWORD || configprod.MYSQL_PASSWORD, 
+            database: process.env.MYSQL_DATABASE || configprod.MYSQL_DATABASE,
             logging: true
         }
         

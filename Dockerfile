@@ -6,6 +6,9 @@ RUN apk update && apk upgrade && apk add --no-cache bash git openssh
 
 COPY package.json ./
 
+RUN touch config.dev.json 
+RUN touch config.json
+
 COPY . . 
 
 ## install typescript 
