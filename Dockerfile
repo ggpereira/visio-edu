@@ -6,12 +6,12 @@ RUN apk update && apk upgrade && apk add --no-cache bash git openssh
 
 COPY package.json ./
 
+COPY . . 
+
 ## install typescript 
 RUN npm i -g typescript
 # install all dependencies of project
 RUN npm install -ddd
-
-COPY . . 
 
 # build project 
 RUN npm run build -ddd
