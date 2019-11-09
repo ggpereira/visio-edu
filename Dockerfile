@@ -6,11 +6,6 @@ RUN apk update && apk upgrade && apk add --no-cache bash git openssh
 
 COPY package.json ./
 
-RUN touch config.dev.json 
-RUN touch config.json
-RUN echo "{MYSQL_PORT:3306, MYSQL_USER:"", MYSQL_DATABASE: "", MYSQL_PASSWORD:"", MYSQL_HOST:""}" >> config.dev.json
-RUN echo "{MYSQL_PORT:3306, MYSQL_USER:"", MYSQL_DATABASE: "", MYSQL_PASSWORD:"", MYSQL_HOST:""}" >> config.json
-
 COPY . . 
 
 ## install typescript 
