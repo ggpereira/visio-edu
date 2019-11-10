@@ -8,6 +8,9 @@ COPY package.json ./
 
 COPY . . 
 
+RUN echo "{MYSQL_HOST: 'mysql', MYSQL_DATABASE: 'visioedu', MYSQL_PORT: 3306, MYSQL_USER: 'root', MYSQL_PASSWORD: 'visioedupsw2019'}" >> config.dev.json  
+RUN echo "{MYSQL_HOST: 'mysql', MYSQL_DATABASE: 'visioedu', MYSQL_PORT: 3306, MYSQL_USER: 'root', MYSQL_PASSWORD: 'visioedupsw2019'}" >> config.json 
+
 ## install typescript 
 RUN npm i -g typescript
 # install all dependencies of project
