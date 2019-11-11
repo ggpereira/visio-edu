@@ -4,7 +4,7 @@ WORKDIR /usr/app/
 
 RUN apk update && apk upgrade && apk add --no-cache bash git openssh
 
-COPY package.json ./
+COPY package*.json ./
 
 COPY . . 
 
