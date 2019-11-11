@@ -16,10 +16,10 @@ RUN npm i -g typescript
 # install all dependencies of project
 RUN npm install -ddd
 
-# build project 
-RUN npm run build -ddd
+# # build project 
+# RUN npm run build -ddd
 
 EXPOSE 8080
 
 # https://github.com/vishnubob/wait-for-it
-CMD ["./wait-for-it.sh","mysql:3306","--strict", "--timeout=60", "--", "npm", "start"]
+# CMD ["./wait-for-it.sh","mysql:3306","--strict", "--timeout=60", "--", "npm", "start"]
