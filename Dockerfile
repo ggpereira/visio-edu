@@ -1,13 +1,11 @@
 FROM node:10.16.1-alpine 
 
-RUN mkdir /usr/app
-WORKDIR /usr/app 
 
 RUN apk update && apk upgrade && apk add --no-cache bash git openssh
 
-COPY package*.json ./
+COPY package*.json /
 
-COPY . . 
+COPY . /
 
 ## install typescript 
 RUN npm i -g typescript
