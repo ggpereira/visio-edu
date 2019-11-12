@@ -1,7 +1,7 @@
 {
     "MYSQL_USER": "root",
-    "MYSQL_PASSWORD": "ggp0898",
+    "MYSQL_PASSWORD": "visioedupsw2019",
     "MYSQL_PORT": 3306,
     "MYSQL_DATABASE": "visioedu",
-    "MYSQL_HOST": "localhost"
+    "MYSQL_HOST": "mysql"
 }
