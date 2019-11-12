@@ -17,7 +17,5 @@ RUN npm install
 # build project 
 RUN npm run build 
 
-EXPOSE 8080
-
 # https://github.com/vishnubob/wait-for-it
 CMD ["./wait-for-it.sh","mysql:3306","--strict", "--timeout=60", "--", "npm", "start"]
