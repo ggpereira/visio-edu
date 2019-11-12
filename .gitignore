@@ -6,5 +6,5 @@ build
 **/.vscode
 dist
 ./node_modules
-config.json
-config.dev.json
+#config.json
+#config.dev.json
