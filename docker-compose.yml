@@ -24,8 +24,6 @@ services:
     ports:
       - 3307:3306 
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: visioedupsw2019
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--skip-character-set-client-handshake','--default-authentication-plugin=mysql_native_password']
 networks:
   traefik:
